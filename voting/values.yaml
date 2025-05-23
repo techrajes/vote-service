@@ -1,0 +1,18 @@
+replicaCount: 2
+
+image:
+  repository: 572997698732.dkr.ecr.ap-south-1.amazonaws.com/vote-service
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+env:
+  REDIS_HOST: redis.internal
+  POSTGRES_HOST: postgres.internal
+
+efs:
+  id: fs-xxxxxxxx
+  path: /vote-data

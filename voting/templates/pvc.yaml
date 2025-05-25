@@ -1,13 +1,11 @@
-{{- if .Values.persistentVolume.enabled }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .Release.Name }}-pvc
+  name: vote-pvc
 spec:
   accessModes:
-    {{- toYaml .Values.persistentVolume.accessModes | nindent 4 }}
+    - ReadWriteMany
   resources:
     requests:
-      storage: {{ .Values.persistentVolume.size }}
-  storageClassName: {{ .Values.persistentVolume.storageClassName }}
-{{- end }}
+      storage: 5Gi
+  storageClassName: efs-sc

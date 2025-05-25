@@ -1,7 +1,7 @@
 replicaCount: 2
 
 image:
-  repository: 572997698732.dkr.ecr.ap-south-1.amazonaws.com/vote-service
+  repository: 730335280129.dkr.ecr.us-east-1.amazonaws.com/vote-ecr
   tag: latest
   pullPolicy: IfNotPresent
 
@@ -14,5 +14,5 @@ env:
   POSTGRES_HOST: postgres.internal
 
 efs:
-  id: fs-xxxxxxxx
+  id: fs-0e1437fd22b2eef09
   path: /vote-data

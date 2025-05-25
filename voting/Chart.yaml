@@ -1,4 +1,5 @@
 apiVersion: v2
 name: vote
+description: Voting application
 version: 0.1.0
-description: Vote service Helm chart
+appVersion: "1.0"

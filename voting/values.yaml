@@ -10,16 +10,20 @@ service:
   port: 80
 
 env:
-  REDIS_HOST: redis.internal
-  POSTGRES_HOST: postgres.internal
+  REDIS_HOST: 10.0.140.138
+  POSTGRES_HOST: 10.0.139.153
+  DB_NAME: mydb
+  DB_USER: myuser
+  DB_PASSWORD: mypassword
 
 efs:
-  id: fs-0e1437fd22b2eef09
+  server: fs-0e1437fd22b2eef09.efs.us-east-1.amazonaws.com
   path: /vote-data
 
-persistentVolume:
-  enabled: true
-  storageClassName: efs-sc
-  accessModes:
-    - ReadWriteMany
-  size: 5Gi
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

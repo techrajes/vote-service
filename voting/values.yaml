@@ -16,3 +16,10 @@ env:
 efs:
   id: fs-0e1437fd22b2eef09
   path: /vote-data
+
+persistentVolume:
+  enabled: true
+  storageClassName: efs-sc
+  accessModes:
+    - ReadWriteMany
+  size: 5Gi

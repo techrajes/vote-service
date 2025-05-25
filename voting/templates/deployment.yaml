@@ -1,33 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vote
-  labels:
-    app: vote
+  name: {{ .Release.Name }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: vote
+      app: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: vote
+        app: {{ .Release.Name }}
     spec:
       containers:
-        - name: vote
+        - name: {{ .Release.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: 80
           env:
             - name: REDIS_HOST
-              value: "{{ .Values.env.REDIS_HOST }}"
+              value: {{ .Values.env.REDIS_HOST }}
             - name: POSTGRES_HOST
-              value: "{{ .Values.env.POSTGRES_HOST }}"
+              value: {{ .Values.env.POSTGRES_HOST }}
           volumeMounts:
             - name: efs-volume
-              mountPath: /efs-data
+              mountPath: {{ .Values.efs.path }}
       volumes:
         - name: efs-volume
           persistentVolumeClaim:
-            claimName: vote-efs-pvc
+            claimName: {{ .Release.Name }}-pvc

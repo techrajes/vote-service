@@ -17,13 +17,13 @@ env:
   DB_PASSWORD: mypassword
 
 efs:
-  server: fs-0e1437fd22b2eef09.efs.us-east-1.amazonaws.com
-  path: /vote-data
+  fileSystemId: fs-0e1437fd22b2eef09  # Replace with your EFS File System ID
+  accessPointId: fsap-0c672ef3cb450664c  # Replace with your EFS Access Point ID
+  storageClassName: efs-sc
+  storageSize: 5Gi
+  mountPath: /app/data  # Adjust as per your application's requirement
 
 resources: {}
-
 nodeSelector: {}
-
 tolerations: []
-
 affinity: {}
